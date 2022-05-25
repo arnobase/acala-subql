@@ -397,6 +397,16 @@ type PoolHourData @entity {
 
   token0Amount: String
   token1Amount: String
+  
+  # Arno
+  rateToken0Token1: String
+  rateToken0Token1Max: String
+  rateToken0Token1Min: String
+  rateToken1Token0: String
+  rateToken1Token0Max: String
+  rateToken1Token0Min: String
+  ##
+  
   exchange0: String
   exchange1: String
 
