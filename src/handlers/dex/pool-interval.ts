@@ -35,13 +35,30 @@ export const updatePoolHourData = async (tokenA: MaybeCurrency, tokenB: MaybeCur
 		record.token0High = poolRecord.exchange0
 		record.token0Close = poolRecord.exchange0
 		record.txCount = BigInt(0)
-
+		
+		// Arno
+		record.rateToken0Token1Max = 0
+		record.rateToken0Token1Min = 999999
+		record.rateToken1Token0Max = 0
+		record.rateToken1Token0Min = 999999
+		//
+		
 		await record.save()
 	}
 
 	// update hour data
 	record.token0Amount = poolRecord.token0Amount
 	record.token1Amount = poolRecord.token1Amount
+	 
+	// Arno
+	record.rateToken0Token1 = poolRecord.token0Amount / poolRecord.token1Amount
+  	record.rateToken0Token1Max = (record.rateToken0Token1 > record.rateToken0Token1Max) ? record.rateToken0Token1 : record.rateToken0Token1Max
+  	record.rateToken0Token1Min = (record.rateToken0Token1 < record.rateToken0Token1Min) ? record.rateToken0Token1 : record.rateToken0Token1Min
+  	record.rateToken1Token0 = poolRecord.token1Amount / poolRecord.token0Amount
+  	record.rateToken1Token0Max = (record.rateToken1Token0 > record.rateToken1Token0Max) ? record.rateToken1Token0 : record.rateToken1Token0Max
+  	record.rateToken1Token0Min = (record.rateToken1Token0 < record.rateToken1Token0Min) ? record.rateToken1Token0 : record.rateToken1Token0Min
+	//
+	
 	record.exchange0 = poolRecord.exchange0
 	record.exchange1 = poolRecord.exchange1
 	record.tvlUSD = poolRecord.tvlUSD
