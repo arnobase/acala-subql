@@ -21,7 +21,7 @@ import { EventHandler } from "../types"
 import { add, getPoolId, minus } from "../utils"
 import { getDex } from "./dex"
 import { createAddLiquidityHistory, createRemoveLiquidityHistory, createSwapHistory } from "./dex-history"
-import { updateDexDayData, updatePoolDayData, updatePoolHourData, updateTokenDayData } from "./pool-interval"
+import { updateDexDayData, updatePoolDayData, updatePoolHourData, updatePool15MnData, updateTokenDayData } from "./pool-interval"
 
 export async function getPool(a: string, b: string) {
   const [token0, token1] = TokenSDK.sortTokenNames(a, b)
@@ -107,12 +107,14 @@ export const createDexPool: EventHandler = async ({ rawEvent, event }) => {
   await pool.save()
   await dex.save()
 
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
   const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
   const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
   const dexDayRecord = await updateDexDayData(timestamp)
 
   await dexDayRecord.save()
 	await hourRecord.save()
+  await mn15Record.save()
 	await dayRecord.save()
 }
 
@@ -192,6 +194,7 @@ export const updatePoolByAddLiquidity: EventHandler = async ({
   await pool.save()
   await dex.save()
 
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
   const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
   const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
   const dexDayRecord = await updateDexDayData(timestamp)
@@ -200,6 +203,7 @@ export const updatePoolByAddLiquidity: EventHandler = async ({
   await history.save()
   await dexDayRecord.save()
 	await hourRecord.save()
+  await mn15Record.save()
 	await dayRecord.save()
 }
 
@@ -271,6 +275,7 @@ export const updatePoolByRemoveLiquidity: EventHandler = async ({
   await pool.save()
   await dex.save()
 
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
   const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
   const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
   const dexDayRecord = await updateDexDayData(timestamp)
@@ -279,6 +284,7 @@ export const updatePoolByRemoveLiquidity: EventHandler = async ({
   await history.save()
   await dexDayRecord.save()
 	await hourRecord.save()
+  await mn15Record.save()
 	await dayRecord.save()
 }
 
@@ -399,6 +405,7 @@ export const updatePoolBySwap: EventHandler = async ({ rawEvent, event }) => {
     await dex.save()
 
     // update daily and hour data
+    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
     const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
     const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
     const dexDayRecord = await updateDexDayData(timestamp)
@@ -420,6 +427,7 @@ export const updatePoolBySwap: EventHandler = async ({ rawEvent, event }) => {
     await token0DayRecord.save()
     await token1DayRecord.save()
 		await hourRecord.save()
+    await mn15Record.save()
 		await dayRecord.save()
     await dexDayRecord.save()
   }
@@ -519,6 +527,7 @@ export const updatePoolBySwapNew: EventHandler = async ({ rawEvent, event }) => 
     await dex.save()
 
     // update daily and hour data
+    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
     const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
     const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
     const dexDayRecord = await updateDexDayData(timestamp)
@@ -540,6 +549,7 @@ export const updatePoolBySwapNew: EventHandler = async ({ rawEvent, event }) => 
     await token0DayRecord.save()
     await token1DayRecord.save()
 		await hourRecord.save()
+    await mn15Record.save()
 		await dayRecord.save()
     await dexDayRecord.save()
   }

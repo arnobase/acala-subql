@@ -400,11 +400,15 @@ type PoolHourData @entity {
   
   # Arno
   rateToken0Token1: String
-  rateToken0Token1Max: String
-  rateToken0Token1Min: String
+  rateToken0Token1High: String
+  rateToken0Token1Low: String
+  rateToken0Token1Open: String
+  rateToken0Token1Close: String
   rateToken1Token0: String
-  rateToken1Token0Max: String
-  rateToken1Token0Min: String
+  rateToken1Token0High: String
+  rateToken1Token0Low: String
+  rateToken1Token0Open: String
+  rateToken1Token0Close: String
   ##
   
   exchange0: String
@@ -417,11 +421,42 @@ type PoolHourData @entity {
   txCount: BigInt
 
   tvlUSD: String
+}
 
-  token0Open: String
-  token0High: String
-  token0Low: String
-  token0Close: String
+type Pool15MnData @entity {
+  id: ID!
+
+  pool: Pool
+  date: Date
+
+  token0: Token
+  token1: Token
+
+  token0Amount: String
+  token1Amount: String
+  
+  rateToken0Token1: String
+  rateToken0Token1High: String
+  rateToken0Token1Low: String
+  rateToken0Token1Open: String
+  rateToken0Token1Close: String
+  rateToken1Token0: String
+  rateToken1Token0High: String
+  rateToken1Token0Low: String
+  rateToken1Token0Open: String
+  rateToken1Token0Close: String
+  
+  exchange0: String
+  exchange1: String
+
+  volumeToken0: String
+  volumeToken1: String
+  volumeUSD: String
+
+  txCount: BigInt
+
+  tvlUSD: String
+
 }
 
 type PoolDayData @entity {

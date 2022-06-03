@@ -50,6 +50,8 @@ export {Pool} from "./Pool"
 
 export {PoolHourData} from "./PoolHourData"
 
+export {Pool15MnData} from "./Pool15MnData"
+
 export {PoolDayData} from "./PoolDayData"
 
 export {Dex} from "./Dex"

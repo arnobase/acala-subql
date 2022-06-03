@@ -26,6 +26,26 @@ export class PoolHourData implements Entity {
 
     public token1Amount?: string;
 
+    public rateToken0Token1?: string;
+
+    public rateToken0Token1High?: string;
+
+    public rateToken0Token1Low?: string;
+
+    public rateToken0Token1Open?: string;
+
+    public rateToken0Token1Close?: string;
+
+    public rateToken1Token0?: string;
+
+    public rateToken1Token0High?: string;
+
+    public rateToken1Token0Low?: string;
+
+    public rateToken1Token0Open?: string;
+
+    public rateToken1Token0Close?: string;
+
     public exchange0?: string;
 
     public exchange1?: string;
@@ -39,14 +59,6 @@ export class PoolHourData implements Entity {
     public txCount?: bigint;
 
     public tvlUSD?: string;
-
-    public token0Open?: string;
-
-    public token0High?: string;
-
-    public token0Low?: string;
-
-    public token0Close?: string;
 
 
     async save(): Promise<void>{
