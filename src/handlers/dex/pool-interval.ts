@@ -50,7 +50,6 @@ export const updatePoolHourData = async (tokenA: MaybeCurrency, tokenB: MaybeCur
 	record.token0Amount = poolRecord.token0Amount
 	record.token1Amount = poolRecord.token1Amount
 	 
-	// Arno
 	record.rateToken0Token1 = calculate(poolRecord.token0Amount+"/"+poolRecord.token1Amount)
   	record.rateToken0Token1High = (record.rateToken0Token1 > record.rateToken0Token1High) ? record.rateToken0Token1 : record.rateToken0Token1High
   	record.rateToken0Token1Low = (record.rateToken0Token1 < record.rateToken0Token1Low) ? record.rateToken0Token1 : record.rateToken0Token1Low
@@ -149,7 +148,7 @@ export const updatePool1MnData = async (tokenA: MaybeCurrency, tokenB: MaybeCurr
 		record = new Pool1MnData(recordId)
 
 		record.poolId = poolId
-		record.date = dayjs.unix(hourIndex * 900).toDate()
+		record.date = dayjs.unix(hourIndex * 60).toDate()
 		record.token0Id = token0Name
 		record.token1Id = token1Name
 
@@ -211,7 +210,7 @@ export const updatePoolBlockData = async (tokenA: MaybeCurrency, tokenB: MaybeCu
 		record = new PoolBlockData(recordId)
 
 		record.poolId = poolId
-		record.date = dayjs.unix(hourIndex * 900).toDate()
+		record.date = dayjs.unix(hourIndex).toDate()
 		record.token0Id = token0Name
 		record.token1Id = token1Name
 
