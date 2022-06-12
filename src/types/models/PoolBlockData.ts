@@ -18,6 +18,8 @@ export class PoolBlockData implements Entity {
 
     public date?: Date;
 
+    public blockNumber?: bigint;
+
     public token0Id?: string;
 
     public token1Id?: string;

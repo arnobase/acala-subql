@@ -106,11 +106,12 @@ export const createDexPool: EventHandler = async ({ rawEvent, event }) => {
   await pool.save()
   await dex.save()
 
-  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp)
-  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp)
-  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
-  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
-  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
+  const blockNumber = event.blockNumber 
+  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp,blockNumber)
+  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp,blockNumber)
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp,blockNumber)
+  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp,blockNumber)
+  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp,blockNumber)
 
   await blockRecord.save()
 	await mn1Record.save()
@@ -195,11 +196,12 @@ export const updatePoolByAddLiquidity: EventHandler = async ({
   await pool.save()
   await dex.save()
 
-  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp)
-  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp)
-  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
-  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
-  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
+  const blockNumber = event.blockNumber 
+  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp,blockNumber)
+  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp,blockNumber)
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp,blockNumber)
+  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp,blockNumber)
+  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp,blockNumber)
 
   await blockRecord.save()
 	await mn1Record.save()
@@ -276,11 +278,12 @@ export const updatePoolByRemoveLiquidity: EventHandler = async ({
   await pool.save()
   await dex.save()
 
-  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp)
-  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp)
-  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
-  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
-  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
+  const blockNumber = event.blockNumber 
+  const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp,blockNumber)
+  const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp,blockNumber)
+  const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp,blockNumber)
+  const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp,blockNumber)
+  const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp,blockNumber)
 
   await blockRecord.save()
 	await mn1Record.save()
@@ -405,11 +408,12 @@ export const updatePoolBySwap: EventHandler = async ({ rawEvent, event }) => {
     await pool.save()
     await dex.save()
 
-    const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp)
-    const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp)
-    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
-    const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
-    const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
+    const blockNumber = event.blockNumber 
+    const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp,blockNumber)
+    const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp,blockNumber)
+    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp,blockNumber)
+    const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp,blockNumber)
+    const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp,blockNumber)
   
     mn1Record.volumeUSD = add(hourRecord.volumeUSD, totalVolumeUSD).toChainData()
     mn15Record.volumeUSD = add(hourRecord.volumeUSD, totalVolumeUSD).toChainData()
@@ -516,11 +520,12 @@ export const updatePoolBySwapNew: EventHandler = async ({ rawEvent, event }) => 
     await pool.save()
     await dex.save()
 
-    const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp)
-    const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp)
-    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp)
-    const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp)
-    const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp)
+    const blockNumber = event.blockNumber 
+    const blockRecord = await updatePoolBlockData(token0Name, token1Name, timestamp,blockNumber)
+    const mn1Record = await updatePool1MnData(token0Name, token1Name, timestamp,blockNumber)
+    const mn15Record = await updatePool15MnData(token0Name, token1Name, timestamp,blockNumber)
+    const hourRecord = await updatePoolHourData(token0Name, token1Name, timestamp,blockNumber)
+    const dayRecord = await updatePoolDayData(token0Name, token1Name, timestamp,blockNumber)
   
     mn1Record.volumeUSD = add(hourRecord.volumeUSD, totalVolumeUSD).toChainData()
     mn15Record.volumeUSD = add(hourRecord.volumeUSD, totalVolumeUSD).toChainData()

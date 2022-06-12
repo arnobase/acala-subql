@@ -26,6 +26,26 @@ export class PoolDayData implements Entity {
 
     public token1Amount?: string;
 
+    public rateToken0Token1?: string;
+
+    public rateToken0Token1High?: string;
+
+    public rateToken0Token1Low?: string;
+
+    public rateToken0Token1Open?: string;
+
+    public rateToken0Token1Close?: string;
+
+    public rateToken1Token0?: string;
+
+    public rateToken1Token0High?: string;
+
+    public rateToken1Token0Low?: string;
+
+    public rateToken1Token0Open?: string;
+
+    public rateToken1Token0Close?: string;
+
     public exchange0?: string;
 
     public exchange1?: string;

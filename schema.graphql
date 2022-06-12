@@ -163,6 +163,7 @@ type PoolHourData @entity {
 
   pool: Pool
   date: Date
+  #blockNumber: [BigInt]
 
   token0: Token
   token1: Token
@@ -200,6 +201,7 @@ type Pool15MnData @entity {
 
   pool: Pool
   date: Date
+  #blockNumber: [BigInt]
 
   token0: Token
   token1: Token
@@ -236,6 +238,7 @@ type Pool1MnData @entity {
 
   pool: Pool
   date: Date
+  #blockNumber: [BigInt]
 
   token0: Token
   token1: Token
@@ -271,6 +274,7 @@ type PoolBlockData @entity {
 
   pool: Pool
   date: Date
+  blockNumber: BigInt
 
   token0: Token
   token1: Token
@@ -309,9 +313,22 @@ type PoolDayData @entity {
   token1: Token!
 
   date: Date
-
+  #blockNumber: [BigInt]
+  
   token0Amount: String
   token1Amount: String
+
+  rateToken0Token1: String
+  rateToken0Token1High: String
+  rateToken0Token1Low: String
+  rateToken0Token1Open: String
+  rateToken0Token1Close: String
+  rateToken1Token0: String
+  rateToken1Token0High: String
+  rateToken1Token0Low: String
+  rateToken1Token0Open: String
+  rateToken1Token0Close: String
+
   exchange0: String
   exchange1: String
 

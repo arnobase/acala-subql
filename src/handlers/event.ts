@@ -19,7 +19,7 @@ dispatch.batchRegist([
 
 ]);
 
-export async function ensureEvnet(event: SubstrateEvent) {
+export async function ensureEvent(event: SubstrateEvent) {
   const idx = event.idx;
   const recordId = `${event.block.block.header.number}-${idx}`;
 
@@ -29,6 +29,7 @@ export async function ensureEvnet(event: SubstrateEvent) {
     data = new Event(recordId);
     data.index = idx;
     data.blockNumber = event.block.block.header.number.toBigInt();
+    //logger.info(data.blockNumber)
     data.timestamp = event.block.timestamp;
 
     await data.save();
@@ -38,7 +39,7 @@ export async function ensureEvnet(event: SubstrateEvent) {
 }
 
 export async function createEvent(event: SubstrateEvent) {
-  const data = await ensureEvnet(event);
+  const data = await ensureEvent(event);
 
   const section = event.event.section;
   const method = event.event.method;
